@@ -83,31 +83,52 @@ static const Theme THEMES[THEME_COUNT] = {
 
 // --------------------------------------------------------------- Layout
 
-// Alle Radien vom Displaymittelpunkt aus, Abstaende in Pixeln. Die
-// Verhaeltnisse sind am Foto des Vorbilds abgemessen (Flanschinnenkante bei
-// rund 77 % des Radius, Tagesfenster bei 60 %, Datum bei 51 %).
-#define RING_IN          100   // Innenkante des Flanschs = Rand des Blatts
-#define MINUTE_R_IN       95   // Minuterie: auf dem Blatt, endet am Flansch
-#define MINUTE_R_OUT      99
-#define BAR_R_IN         109   // Balken bei 1, 3, 5, 7, 9, 11 auf dem Flansch
-#define BAR_R_OUT        124
-#define BAR_W              3
-#define INDEX_R_IN        93   // ihre Fortsetzung auf dem Blatt
-#define NUMERAL_R        113   // Mitte der Flanschzahlen
-#define NUMERAL_LIFT      15   // Abstand Textbox-Oberkante zur Ziffernmitte
+// Alles am Flansch wird als Abstand vom Displayrand angegeben ("inset"),
+// gemessen entlang des Strahls aus der Mitte. Auf Gabbro ist der Rand ein
+// Kreis, auf Emery ein abgerundetes Rechteck -- edge_point() rechnet beides,
+// die Zeichenroutinen bleiben dieselben. Die Verhaeltnisse sind am Foto des
+// Vorbilds abgemessen (Blattrand bei rund 75 % des Radius, Tagesfenster bei
+// 60 %, Datum bei 51 %).
+//
+// Der Flansch muss so breit sein, dass die "10" auf ihrer Diagonale Platz
+// hat: gut 23 x 17 px Ziffernbild brauchen auf 300 Grad rund 28 px radial.
+#if defined(PBL_PLATFORM_EMERY)
+  #define CORNER_R        56   // Eckenradius am Displayrand; nach innen konzentrisch
+  #define DIAL_INSET      28   // Blattrand = Innenkante des Flanschs
+  #define BAR_INSET_OUT    5   // Balken bei 1, 3, 5, 7, 9, 11 auf dem Flansch
+  #define BAR_INSET_IN    21
+  #define NUMERAL_INSET   14   // Mitte der Flanschzahlen
 
-#define DAY_DIST          76   // Mitte des Tagesfensters ueber der Mitte
+  #define DAY_DIST        62   // Mitte des Tagesfensters ueber der Mitte
+  #define BRAND_DIST      40   // Schriftzug ueber der Mitte
+  #define LOGO_DIST       24   // Fluegel-Logo ueber der Mitte
+  #define DATE_DIST       46   // Mitte des Datumsfensters rechts der Mitte
+  #define AUTO_DIST       44   // "automatic" unter der Mitte
+  #define MADE_DIST      100   // "MADE IN GERMANY" unter der Mitte
+#else
+  #define DIAL_INSET      32
+  #define BAR_INSET_OUT    6
+  #define BAR_INSET_IN    21
+  #define NUMERAL_INSET   16
+
+  #define DAY_DIST        76
+  #define BRAND_DIST      50
+  #define LOGO_DIST       32
+  #define DATE_DIST       66
+  #define AUTO_DIST       52
+  #define MADE_DIST      114
+#endif
+
+#define MINUTE_LEN         4   // Minuterie: auf dem Blatt, endet am Flansch
+#define INDEX_LEN          7   // dunkle Fortsetzung der Balken auf dem Blatt
+#define BAR_W              3
+#define NUMERAL_LIFT      14   // Abstand Textbox-Oberkante zur Ziffernmitte
+#define MADE_X            33   // "MADE IN" / "GERMANY" links und rechts der 6
+
 #define DAY_W             78
 #define DAY_H             18
-#define BRAND_DIST        50   // Schriftzug ueber der Mitte
-#define LOGO_DIST         32   // Fluegel-Logo ueber der Mitte
-#define DATE_DIST         66   // Mitte des Datumsfensters rechts der Mitte
 #define DATE_W            24
 #define DATE_H            20
-#define AUTO_DIST         52   // "automatic" unter der Mitte
-#define MADE_DIST        114   // "MADE IN GERMANY" unter der Mitte
-#define MADE_X            33   // links und rechts der 6
-
 #define FRAME_W            2
 
 // Gothic zeichnet mit Luft ueber den Grossbuchstaben. Diese Werte ziehen die
@@ -116,19 +137,31 @@ static const Theme THEMES[THEME_COUNT] = {
 #define LIFT_GOTHIC_18    12
 #define LIFT_GOTHIC_09     5
 
-#define MIN_HAND_LEN      92
-#define HOUR_HAND_LEN     64
-#define SEC_HAND_LEN      98
-#define SEC_TAIL          24
-#define SEC_W              2
-#define HUB_R              6
-
 // Zeiger in lokalen Koordinaten: y negativ zeigt zur Spitze. Schwertform,
-// zur Spitze hin breiter, mit schmaler Leuchtmasse-Einlage.
+// zur Spitze hin breiter, mit schmaler Leuchtmasse-Einlage. Auf Emery reicht
+// der Minutenzeiger bis kurz vor die Minuterie an den Laengsseiten.
+#if defined(PBL_PLATFORM_EMERY)
+  #define MIN_HAND_LEN    66
+  #define HOUR_HAND_LEN   46
+  #define SEC_HAND_LEN    70
+  #define SEC_TAIL        18
+  #define HUB_R            5
+static const GPoint MIN_BODY[] = {{-3, 9}, {3, 9}, {5, -50}, {0, -MIN_HAND_LEN}, {-5, -50}};
+static const GPoint MIN_LUME[] = {{-1, -14}, {1, -14}, {3, -48}, {0, -59}, {-3, -48}};
+static const GPoint HOUR_BODY[] = {{-4, 9}, {4, 9}, {6, -31}, {0, -HOUR_HAND_LEN}, {-6, -31}};
+static const GPoint HOUR_LUME[] = {{-1, -14}, {1, -14}, {3, -30}, {0, -39}, {-3, -30}};
+#else
+  #define MIN_HAND_LEN    92
+  #define HOUR_HAND_LEN   64
+  #define SEC_HAND_LEN    96
+  #define SEC_TAIL        24
+  #define HUB_R            6
 static const GPoint MIN_BODY[] = {{-3, 10}, {3, 10}, {6, -70}, {0, -MIN_HAND_LEN}, {-6, -70}};
 static const GPoint MIN_LUME[] = {{-1, -16}, {1, -16}, {3, -68}, {0, -82}, {-3, -68}};
 static const GPoint HOUR_BODY[] = {{-4, 10}, {4, 10}, {7, -44}, {0, -HOUR_HAND_LEN}, {-7, -44}};
 static const GPoint HOUR_LUME[] = {{-1, -16}, {1, -16}, {4, -43}, {0, -55}, {-4, -43}};
+#endif
+#define SEC_W              2
 
 // Fluegel-Logo: Dreieck mit je drei Schwingen, Punkte relativ zur Logomitte.
 static const GPoint LOGO_TRI[] = {{-5, -3}, {5, -3}, {0, 5}};
@@ -175,8 +208,43 @@ static GPoint polar(GPoint c, int32_t angle, int r) {
                 c.y - (int)(cos_lookup(angle) * r / TRIG_MAX_RATIO));
 }
 
-static void radial_line(GContext *ctx, GPoint c, int32_t angle, int r_in, int r_out) {
-  graphics_draw_line(ctx, polar(c, angle, r_in), polar(c, angle, r_out));
+#if defined(PBL_PLATFORM_EMERY)
+// Die SDK bringt kein sqrt mit; ein paar Newton-Schritte reichen fuer Pixel.
+static float fsqrt(float v) {
+  if (v <= 0) return 0;
+  float x = v > 1 ? v : 1;
+  for (int i = 0; i < 12; i++) x = 0.5f * (x + v / x);
+  return x;
+}
+#endif
+
+// Punkt im Abstand inset vom Displayrand auf dem Strahl unter angle. Auf
+// Emery schneidet der Strahl ein abgerundetes Rechteck, dessen Ecken nach
+// innen konzentrisch kleiner werden (Radius CORNER_R - inset).
+static GPoint edge_point(GPoint c, int32_t angle, int inset) {
+#if defined(PBL_PLATFORM_EMERY)
+  const float dx = (float)sin_lookup(angle) / TRIG_MAX_RATIO;
+  const float dy = -(float)cos_lookup(angle) / TRIG_MAX_RATIO;
+  const float ax = dx < 0 ? -dx : dx, ay = dy < 0 ? -dy : dy;
+  const float hx = c.x - inset, hy = c.y - inset;
+  const float r = inset < CORNER_R ? CORNER_R - inset : 0;
+
+  // erst gegen die geraden Seiten, im Eckbereich dann gegen den Viertelkreis
+  float t = (ax * hy > ay * hx) ? hx / ax : hy / ay;
+  const float ccx = hx - r, ccy = hy - r;
+  if (t * ax > ccx && t * ay > ccy) {
+    const float b = ax * ccx + ay * ccy;
+    t = b + fsqrt(b * b - (ccx * ccx + ccy * ccy) + r * r);
+  }
+  return GPoint(c.x + (int)(dx * t + (dx < 0 ? -0.5f : 0.5f)),
+                c.y + (int)(dy * t + (dy < 0 ? -0.5f : 0.5f)));
+#else
+  return polar(c, angle, c.x - inset);
+#endif
+}
+
+static void edge_line(GContext *ctx, GPoint c, int32_t angle, int inset_out, int inset_in) {
+  graphics_draw_line(ctx, edge_point(c, angle, inset_out), edge_point(c, angle, inset_in));
 }
 
 // Text so setzen, dass seine optische Mitte auf (cx, cy) liegt.
@@ -224,7 +292,12 @@ static void draw_bezel(GContext *ctx, GRect bounds, GPoint c, const Theme *t) {
   graphics_fill_rect(ctx, bounds, 0, GCornerNone);
 
   graphics_context_set_fill_color(ctx, t->dial);
-  graphics_fill_circle(ctx, c, RING_IN);
+#if defined(PBL_PLATFORM_EMERY)
+  graphics_fill_rect(ctx, grect_inset(bounds, GEdgeInsets(DIAL_INSET)),
+                     CORNER_R - DIAL_INSET, GCornersAll);
+#else
+  graphics_fill_circle(ctx, c, c.x - DIAL_INSET);
+#endif
 
   // Minuterie: feine Striche am Blattrand, ausser bei den Stunden. Sie
   // enden an der Flanschkante und ragen nicht in den schwarzen Rand.
@@ -232,7 +305,7 @@ static void draw_bezel(GContext *ctx, GRect bounds, GPoint c, const Theme *t) {
   graphics_context_set_stroke_width(ctx, 1);
   for (int m = 0; m < 60; m++) {
     if (m % 5 == 0) continue;
-    radial_line(ctx, c, TRIG_MAX_ANGLE * m / 60, MINUTE_R_IN, MINUTE_R_OUT);
+    edge_line(ctx, c, TRIG_MAX_ANGLE * m / 60, DIAL_INSET + 1, DIAL_INSET + MINUTE_LEN);
   }
 
   // Ungerade Stunden: heller Balken auf dem Flansch, dunkler auf dem Blatt
@@ -240,16 +313,16 @@ static void draw_bezel(GContext *ctx, GRect bounds, GPoint c, const Theme *t) {
   for (int h = 1; h < 12; h += 2) {
     const int32_t a = TRIG_MAX_ANGLE * h / 12;
     graphics_context_set_stroke_color(ctx, t->bezel_print);
-    radial_line(ctx, c, a, BAR_R_IN, BAR_R_OUT);
+    edge_line(ctx, c, a, BAR_INSET_OUT, BAR_INSET_IN);
     graphics_context_set_stroke_color(ctx, t->print);
-    radial_line(ctx, c, a, INDEX_R_IN, RING_IN - 1);
+    edge_line(ctx, c, a, DIAL_INSET + 1, DIAL_INSET + INDEX_LEN);
   }
 
   // Gerade Stunden: Zahlen, aufrecht wie beim Vorbild
   graphics_context_set_text_color(ctx, t->bezel_print);
   static const char *NUMERALS[] = {"12", "2", "4", "6", "8", "10"};
   for (int i = 0; i < 6; i++) {
-    const GPoint p = polar(c, TRIG_MAX_ANGLE * i / 6, NUMERAL_R);
+    const GPoint p = edge_point(c, TRIG_MAX_ANGLE * i / 6, NUMERAL_INSET);
     draw_text_at(ctx, NUMERALS[i], s_font_numerals, p.x, p.y, NUMERAL_LIFT, 40);
   }
 
@@ -408,7 +481,7 @@ static void window_unload(Window *window) {
 
 static void init(void) {
   load_settings();
-  s_font_numerals = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ROBOTO_25));
+  s_font_numerals = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_ROBOTO_23));
 
   s_window = window_create();
   window_set_window_handlers(s_window, (WindowHandlers) {

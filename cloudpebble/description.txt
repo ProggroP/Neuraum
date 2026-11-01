@@ -13,12 +13,14 @@ Neuraum
 
 TAGLINE
 
-A classic pilot's automatic for the Pebble Round 2.
+A classic pilot's automatic for the Pebble Round 2 and Pebble Time 2.
 
 
 DESCRIPTION
 
-Neuraum recreates the look of a classic German pilot's automatic watch on the round display of the Pebble Round 2: a black flange with cream numerals, a cream dial with day and date windows, and slim sword hands with luminous inlays.
+Neuraum recreates the look of a classic German pilot's automatic watch: a black flange with cream numerals, a cream dial with day and date windows, and slim sword hands with luminous inlays.
+
+On the Pebble Round 2 the dial is round like the original. On the Pebble Time 2 it becomes a cushion case: a rectangular dial with generously rounded corners, framed by the same black flange, with every marker following the curve of the corners.
 
 Every detail of the original layout is there. The flange carries the even hours as upright numerals and the odd hours as cream bars that continue as dark indices on the dial. A fine minute track runs along the edge of the dial. Below the twelve sits a framed day window, followed by the neuraum aviation lettering and the winged emblem. The date sits in its own window at three, the word automatic above the six, and MADE IN GERMANY flanks the six on the flange.
 
@@ -28,7 +30,7 @@ Five dials to choose from: Cream like the original, Anthracite, Blue, Silver and
 
 The second hand is optional. Without it the face redraws only once a minute, which noticeably extends battery life. Neuraum makes no network requests and uses no sensors.
 
-Built for the Pebble Round 2 (gabbro).
+Built for the Pebble Round 2 (gabbro) and the Pebble Time 2 (emery).
 
 
 SETTINGS
@@ -46,6 +48,10 @@ Watchfaces (Analog / Classic)
 
 
 RELEASE NOTES
+
+1.1.0
+
+Neuraum now runs on the Pebble Time 2 as well, with a rectangular dial with rounded corners in the same style and with the same settings. On the Pebble Round 2 the flange numerals are set slightly smaller so the 10 no longer touches the edge of the dial.
 
 1.0.0
 

@@ -28,8 +28,9 @@
                 {
                     "characterRegex": "[0-9]",
                     "file": "fonts/Roboto-Medium.ttf",
-                    "name": "FONT_ROBOTO_25",
+                    "name": "FONT_ROBOTO_23",
                     "targetPlatforms": [
+                        "emery",
                         "gabbro"
                     ],
                     "type": "font"
@@ -38,6 +39,7 @@
         },
         "sdkVersion": "3",
         "targetPlatforms": [
+            "emery",
             "gabbro"
         ],
         "uuid": "c89f257c-6e14-4b02-a13c-1ad7624b7bc4",
@@ -45,5 +47,5 @@
             "watchface": true
         }
     },
-    "version": "1.0.0"
+    "version": "1.1.0"
 }
