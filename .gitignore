@@ -5,6 +5,8 @@ package-lock.json
 
 # waf-Zustand (enthaelt die komplette lokale Umgebung)
 .lock-waf*
+*.lock-waf*
+*[conflicted]*
 .waf*
 
 # CloudPebble-Archiv, wird per pb.ps1 zip erzeugt
