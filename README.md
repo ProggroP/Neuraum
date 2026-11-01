@@ -4,7 +4,7 @@
 
 <img src="screenshots/shot_gabbro_cream.png" alt="Cream dial"> <img src="screenshots/shot_gabbro_blue.png" alt="Blue dial"> <img src="screenshots/shot_gabbro_olive.png" alt="Olive dial">
 
-A Pebble watchface (v1.0.0).
+A Pebble watchface (v1.0.0), available in the [Rebble App Store](https://apps.rePebble.com/6f19fab7129642619a7356db).
 
 Neuraum recreates the look of a classic German pilot's automatic watch on
 the round display of the Pebble Round 2: a black flange with cream numerals,
