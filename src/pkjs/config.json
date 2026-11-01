@@ -1,0 +1,74 @@
+[
+  {
+    "type": "heading",
+    "defaultValue": "Neuraum"
+  },
+  {
+    "type": "text",
+    "defaultValue": "A classic pilot's automatic: black flange, cream dial, day and date windows."
+  },
+  {
+    "type": "section",
+    "items": [
+      {
+        "type": "heading",
+        "defaultValue": "Dial"
+      },
+      {
+        "type": "select",
+        "messageKey": "THEME",
+        "label": "Dial colour",
+        "defaultValue": "0",
+        "options": [
+          { "label": "Cream", "value": "0" },
+          { "label": "Anthracite", "value": "1" },
+          { "label": "Blue", "value": "2" },
+          { "label": "Silver", "value": "3" },
+          { "label": "Olive", "value": "4" }
+        ]
+      },
+      {
+        "type": "toggle",
+        "messageKey": "SECONDS",
+        "label": "Second hand",
+        "description": "Without the second hand the face redraws once a minute instead of every second, which saves battery.",
+        "defaultValue": true
+      }
+    ]
+  },
+  {
+    "type": "section",
+    "items": [
+      {
+        "type": "heading",
+        "defaultValue": "Day and date"
+      },
+      {
+        "type": "toggle",
+        "messageKey": "SHOW_DAY",
+        "label": "Day window",
+        "defaultValue": true
+      },
+      {
+        "type": "select",
+        "messageKey": "LANG",
+        "label": "Day names",
+        "defaultValue": "0",
+        "options": [
+          { "label": "English  ·  MONDAY", "value": "0" },
+          { "label": "German  ·  MONTAG", "value": "1" }
+        ]
+      },
+      {
+        "type": "toggle",
+        "messageKey": "SHOW_DATE",
+        "label": "Date window",
+        "defaultValue": true
+      }
+    ]
+  },
+  {
+    "type": "submit",
+    "defaultValue": "Save"
+  }
+]

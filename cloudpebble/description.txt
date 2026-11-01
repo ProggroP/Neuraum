@@ -1,0 +1,52 @@
+NEURAUM - Rebble App Store listing
+
+Wird bei jeder Veroeffentlichung mit aktualisiert. Englisch, weil der Store
+international ist. Reiner Text, ein Absatz pro Zeile, damit sich die
+Abschnitte ohne Nacharbeit in die Store-Felder uebernehmen lassen.
+
+-------------------------------------------------------------------------
+
+TITLE
+
+Neuraum
+
+
+TAGLINE
+
+A classic pilot's automatic for the Pebble Round 2.
+
+
+DESCRIPTION
+
+Neuraum recreates the look of a classic German pilot's automatic watch on the round display of the Pebble Round 2: a black flange with cream numerals, a cream dial with day and date windows, and slim sword hands with luminous inlays.
+
+Every detail of the original layout is there. The flange carries the even hours as upright numerals and the odd hours as cream bars that continue as dark indices on the dial. A fine minute track runs along the edge of the dial. Below the twelve sits a framed day window, followed by the neuraum aviation lettering and the winged emblem. The date sits in its own window at three, the word automatic above the six, and MADE IN GERMANY flanks the six on the flange.
+
+The hands are drawn the way the real ones are built: a dark sword-shaped body with a lighter luminous inlay, and a thin red second hand with a short tail. On the lighter dials the hands are black, on the darker ones they turn to steel grey so the inlays still read.
+
+Five dials to choose from: Cream like the original, Anthracite, Blue, Silver and Olive. The day window can show English or German day names, and both windows can be switched off for a cleaner dial.
+
+The second hand is optional. Without it the face redraws only once a minute, which noticeably extends battery life. Neuraum makes no network requests and uses no sensors.
+
+Built for the Pebble Round 2 (gabbro).
+
+
+SETTINGS
+
+- Dial colour - Cream, Anthracite, Blue, Silver or Olive.
+- Second hand - on or off. Off redraws the face once a minute instead of every second.
+- Day window - show or hide the day of the week.
+- Day names - English (MONDAY) or German (MONTAG).
+- Date window - show or hide the date at three.
+
+
+CATEGORY
+
+Watchfaces (Analog / Classic)
+
+
+RELEASE NOTES
+
+1.0.0
+
+First release.

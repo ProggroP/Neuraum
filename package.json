@@ -1,0 +1,49 @@
+{
+    "author": "Axel Kark",
+    "dependencies": {
+        "@rebble/clay": "1.0.8"
+    },
+    "keywords": [
+        "pebble-app",
+        "watchface",
+        "neuraum"
+    ],
+    "name": "neuraum",
+    "pebble": {
+        "capabilities": [
+            "configurable"
+        ],
+        "displayName": "Neuraum",
+        "enableMultiJS": true,
+        "messageKeys": [
+            "THEME",
+            "SECONDS",
+            "SHOW_DAY",
+            "SHOW_DATE",
+            "LANG"
+        ],
+        "projectType": "native",
+        "resources": {
+            "media": [
+                {
+                    "characterRegex": "[0-9]",
+                    "file": "fonts/Roboto-Medium.ttf",
+                    "name": "FONT_ROBOTO_25",
+                    "targetPlatforms": [
+                        "gabbro"
+                    ],
+                    "type": "font"
+                }
+            ]
+        },
+        "sdkVersion": "3",
+        "targetPlatforms": [
+            "gabbro"
+        ],
+        "uuid": "c89f257c-6e14-4b02-a13c-1ad7624b7bc4",
+        "watchapp": {
+            "watchface": true
+        }
+    },
+    "version": "1.0.0"
+}
